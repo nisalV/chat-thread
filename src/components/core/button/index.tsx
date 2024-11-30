@@ -1,5 +1,5 @@
 import { colors } from '../../../common/values'
-import './Button.css'
+import './button.css'
 
 type ButtonProps = {
   label: string

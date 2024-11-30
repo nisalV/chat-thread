@@ -22,6 +22,7 @@ const CommentInput = () => {
         onChange={setCommentText}
         placeholder="Write a comment..."
       />
+
       
       <div id="submit-container">
         <Button label="COMMENT" type="submit" onClick={() => {}} />

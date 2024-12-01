@@ -6,7 +6,7 @@ export const useThread = (): CommentContextType => {
   const context = useContext(ThreadContext)
   
   if (!context) {
-    throw new Error('useThread must be used within a CommentProvider')
+    throw new Error('useThread must be used within a ThreadProvider')
   }
   return context
 }

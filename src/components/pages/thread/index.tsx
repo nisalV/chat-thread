@@ -8,7 +8,7 @@ const Thread = () => {
 
   return (
     <div id="thread-container">
-      <CommentInput />
+      <CommentInput placeholder="Write a comment..." />
       <CommentThread ThreadComment={threadComments} />
     </div>
   )

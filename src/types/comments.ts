@@ -23,7 +23,7 @@ export type CommentContextType = {
     id: string,
     voteType: VoteType.UPVOTE | VoteType.DOWNVOTE
   ) => void
-  toggleCommentCollapse: (id: string) => void
+  toggleCommentCollapse: (id: string, isCollapsed: boolean) => void
 }
 
 export type CommentProviderProps = {

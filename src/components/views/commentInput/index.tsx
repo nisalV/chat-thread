@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './commentInput.css'
-import Button from '../../core/button'
+import { ButtonBase } from '../../core/button'
 import TextArea from '../../core/textArea'
 import { useThread } from '../../../hooks/commentHooks'
 
-const CommentInput = () => {
+type CommentInputProps = {
+  placeholder: string
+  buttonText?: string
+  addRepply?: (reply: string) => void
+}
+
+const CommentInput = ({
+  placeholder,
+  buttonText,
+  addRepply,
+}: CommentInputProps) => {
   const [commentText, setCommentText] = useState('')
   const { addComment } = useThread()
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
@@ -20,6 +30,11 @@ const CommentInput = () => {
   }
 
   const onSubmit = () => {
+    if (addRepply) {
+      addRepply(commentText)
+      setCommentText('')
+      return
+    }
     if (commentText.trim()) {
       addComment(commentText)
       setCommentText('')
@@ -27,17 +42,21 @@ const CommentInput = () => {
   }
 
   return (
-    <form id="comment-input-container" onSubmit={handleFormSubmit}>
+    <form className="comment-input-container" onSubmit={handleFormSubmit}>
       <TextArea
         ref={textAreaRef}
         isRequired={true}
         value={commentText}
-        placeholder="Write a comment..."
+        placeholder={placeholder}
         onChange={setCommentText}
         onSubmit={onSubmit}
       />
-      <div id="submit-container">
-        <Button label="COMMENT" type="submit" onClick={() => {}} />
+      <div className="submit-container">
+        <ButtonBase
+          label={buttonText || 'COMMENT'}
+          type="submit"
+          onClick={() => {}}
+        />
       </div>
     </form>
   )

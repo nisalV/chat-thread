@@ -26,7 +26,7 @@ const CommentThread = ({ ThreadComment, depth = 0 }: CommentThreadProps) => {
 
     return (
       <div
-      key={comment.id}
+        key={comment.id}
         id={`comment-container`}
         style={{
           marginLeft: `${depth * 20}px`,

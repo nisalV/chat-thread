@@ -8,8 +8,8 @@ const Thread = () => {
 
   return (
     <div id="thread-container">
-        <CommentInput />
-        <CommentThread ThreadComment={threadComments} />
+      <CommentInput />
+      <CommentThread ThreadComment={threadComments} />
     </div>
   )
 }

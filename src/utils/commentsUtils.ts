@@ -22,9 +22,7 @@ export const updateComments = (
   return updatedComments
 }
 
-export const sortComments = (
-  comments: ThreadComment[]
-): ThreadComment[] => {
+export const sortComments = (comments: ThreadComment[]): ThreadComment[] => {
   const sortedComments = comments.map((comment) => ({ ...comment }))
   const stack: ThreadComment[] = [...sortedComments]
 

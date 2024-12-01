@@ -1,17 +1,19 @@
 textarea {
-    width: calc(100% - 1px);
-    margin-right: 0;
-    padding: 10px;
-    resize: vertical;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  textarea:focus {
-    border-color: #ff5e00;
-    box-shadow: 0 0 4px #b330009A;
-  }
+  width: calc(100% - 1px);
+  margin-right: 0;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #ff5e00;
+  box-shadow: 0 0 4px #b330009a;
+}

@@ -3,7 +3,7 @@ import './button.css'
 
 type ButtonProps = {
   label: string
-  type?: "submit" | "reset" | "button"
+  type?: 'submit' | 'reset' | 'button'
   textColor?: string
   style?: React.CSSProperties
   onClick: () => void
@@ -11,7 +11,12 @@ type ButtonProps = {
 
 const Button = ({ label, type, textColor, style, onClick }: ButtonProps) => {
   return (
-    <button className="custom-button" type={type} style={{color: textColor || colors.white, ...style}} onClick={onClick}>
+    <button
+      className="custom-button"
+      type={type}
+      style={{ color: textColor || colors.white, ...style }}
+      onClick={onClick}
+    >
       {label}
     </button>
   )

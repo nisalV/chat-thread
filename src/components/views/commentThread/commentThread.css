@@ -1,0 +1,11 @@
+#thread-cotainer {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#comment-container {
+  border-left: 2px solid #e0e0e0;
+  margin-top: 20px;
+  padding: 0 10px;
+  width: 'auto';
+}

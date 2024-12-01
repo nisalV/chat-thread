@@ -1,10 +1,10 @@
 #comment-input-container {
-    width: 70%;
-    margin: 30px 15%;
+  width: 70%;
+  margin: 30px 15%;
 }
 
 #submit-container {
-    width: 100%;
-    display: flex;
-    justify-content: end;
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }

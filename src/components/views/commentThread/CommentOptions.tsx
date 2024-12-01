@@ -36,7 +36,9 @@ const CommentOptions = ({
           <Devider />
           <ButtonClear
             label={`${comment.isCollapsed ? 'Expand' : 'Collapse'}`}
-            onClick={() => toggleCommentCollapse(comment.id, !comment.isCollapsed)}
+            onClick={() =>
+              toggleCommentCollapse(comment.id, !comment.isCollapsed)
+            }
           />
         </>
       )}

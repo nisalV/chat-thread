@@ -8,7 +8,7 @@ describe('CommentInput Component', () => {
   it('clears text on submit for non-empty string', () => {
     render(
       <ThreadProvider>
-        <CommentInput placeholder={''} />
+        <CommentInput placeholder={'Write a comment...'} />
       </ThreadProvider>
     )
 
@@ -25,7 +25,7 @@ describe('CommentInput Component', () => {
   it('does not clear the text if comment is empty', () => {
     render(
       <ThreadProvider>
-        <CommentInput placeholder={''} />
+        <CommentInput placeholder={'Write a comment...'} />
       </ThreadProvider>
     )
 

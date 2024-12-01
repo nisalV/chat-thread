@@ -1,4 +1,3 @@
-import React from 'react'
 import { ThreadComment, VoteType } from '../../../types/comments'
 import { ButtonClear } from '../../core/button'
 import './commentThread.css'

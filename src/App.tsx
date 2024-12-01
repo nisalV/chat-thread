@@ -1,7 +1,12 @@
 import Thread from './components/pages/thread'
+import { ThreadProvider } from './contexts/commentContext'
 
 function App() {
-  return <Thread />
+  return (
+    <ThreadProvider>
+      <Thread />
+    </ThreadProvider>
+  )
 }
 
 export default App

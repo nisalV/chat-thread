@@ -9,10 +9,16 @@ type ButtonProps = {
   onClick: () => void
 }
 
-const Button = ({ label, type, textColor, style, onClick }: ButtonProps) => {
+export const ButtonBase = ({
+  label,
+  type,
+  textColor,
+  style,
+  onClick,
+}: ButtonProps) => {
   return (
     <button
-      className="custom-button"
+      id="button-base"
       type={type}
       style={{ color: textColor || colors.white, ...style }}
       onClick={onClick}
@@ -22,4 +28,21 @@ const Button = ({ label, type, textColor, style, onClick }: ButtonProps) => {
   )
 }
 
-export default Button
+export const ButtonClear = ({
+  label,
+  type,
+  textColor,
+  style,
+  onClick,
+}: ButtonProps) => {
+  return (
+    <button
+      id="button-clear"
+      type={type}
+      style={{ color: textColor || colors.white, ...style }}
+      onClick={onClick}
+    >
+      <p id="button-clear-text">{label}</p>
+    </button>
+  )
+}

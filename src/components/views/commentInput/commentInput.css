@@ -1,10 +1,12 @@
-#comment-input-container {
-  width: 70%;
-  margin: 30px 15%;
+.comment-input-container {
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color: rgb(188, 191, 193);
 }
 
-#submit-container {
-  width: 100%;
+.submit-container {
+  width: calc(100% - 7px);
   display: flex;
+  padding: 0 7px 7px 0;
   justify-content: end;
 }

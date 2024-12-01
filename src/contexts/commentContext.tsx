@@ -67,10 +67,10 @@ export const ThreadProvider = ({ children }: CommentProviderProps) => {
   )
 
   const toggleCommentCollapse = useCallback(
-    (id: string) => {
+    (id: string, isCollapsed: boolean) => {
       const newComments = updateComments(threadComments, id, (comment) => ({
         ...comment,
-        isCollapsed: !comment.isCollapsed,
+        isCollapsed: isCollapsed,
       }))
 
       saveThreadComments(newComments)

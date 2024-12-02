@@ -4,6 +4,7 @@ import './commentThread.css'
 
 interface CommentOptionsProps {
   comment: ThreadComment
+  isReplying: boolean
   onReplyClick: () => void
   voteComment: (id: string, voteType: VoteType) => void
   toggleCommentCollapse: (id: string, isCollapsed: boolean) => void
@@ -13,13 +14,17 @@ const Devider = () => <div id="option-devider" />
 
 const CommentOptions = ({
   comment,
+  isReplying,
   onReplyClick,
   voteComment,
   toggleCommentCollapse,
 }: CommentOptionsProps) => {
   return (
     <div id="comment-data">
-      <ButtonClear label="📝 Reply" onClick={onReplyClick} />
+      <ButtonClear
+        label={`📝 ${isReplying ? 'Close' : 'Reply'}`}
+        onClick={onReplyClick}
+      />
       <Devider />
       <ButtonClear
         label={`👍 ${comment.upvotes}`}

@@ -6,11 +6,10 @@ import CommentInput from '../commentInput'
 import CommentOptions from './CommentOptions'
 
 const CommentThread = () => {
-  const { threadComments, voteComment, addComment, toggleCommentCollapse } = useThread()
+  const { threadComments, voteComment, addComment, toggleCommentCollapse } =
+    useThread()
 
-  const [replyCommentId, setReplyCommentId] = useState<string | null>(
-    null
-  )
+  const [replyCommentId, setReplyCommentId] = useState<string | null>(null)
 
   const handleReply = (commentId: string, text: string) => {
     if (text && text.trim()) {
@@ -40,7 +39,11 @@ const CommentThread = () => {
   return (
     <div>
       {parsedComments.map(({ comment, index }) => (
-        <div key={comment.id} id={`comment-container`} style={{ marginLeft: index * 20 }}>
+        <div
+          key={comment.id}
+          id={`comment-container`}
+          style={{ marginLeft: index * 20 }}
+        >
           <div>
             <p>{comment.text}</p>
             <CommentOptions

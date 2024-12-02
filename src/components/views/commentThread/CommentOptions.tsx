@@ -21,7 +21,10 @@ const CommentOptions = ({
 }: CommentOptionsProps) => {
   return (
     <div id="comment-data">
-      <ButtonClear label={`📝 ${isReplying? 'Close': 'Reply'}`} onClick={onReplyClick} />
+      <ButtonClear
+        label={`📝 ${isReplying ? 'Close' : 'Reply'}`}
+        onClick={onReplyClick}
+      />
       <Devider />
       <ButtonClear
         label={`👍 ${comment.upvotes}`}

@@ -17,11 +17,6 @@ export const spaces = {
   medium: 20,
 }
 
-export const imagePaths = {
-  avatar: '../../../../src/assets/images/avatar.png',
-  userFallBack: '../../../../src/assets/images/fallback-user.png',
-}
-
 export const values = {
   daysOfWeek: [
     'Sunday',

@@ -46,3 +46,8 @@ export const ButtonClear = ({
     </button>
   )
 }
+
+export default {
+  ButtonBase,
+  ButtonClear,
+}

@@ -4,11 +4,12 @@ import { ThreadComment } from '../../../types/comments'
 import './commentThread.css'
 import CommentInput from '../commentInput'
 import CommentOptions from './CommentOptions'
-import { imagePaths, sizes, spaces } from '../../../common/values'
+import { sizes, spaces } from '../../../common/values'
 import Avatar from '../../core/image'
 import Text from '../../core/text'
 import { textStyles } from '../../../common/commonStyles'
 import { getDateTime } from '../../../utils/commentsUtils'
+import avatar from '../../../../src/assets/images/avatar.png'
 
 const styles: Record<string, React.CSSProperties> = {
   commentUserName: {
@@ -63,7 +64,8 @@ const CommentThread = () => {
           <div id="comment">
             <div id="comment-user">
               <Avatar
-                src={imagePaths.avatar}
+                src={avatar}
+                alt={comment.author?.[0] || ''}
                 width={sizes.avatar.small}
                 height={sizes.avatar.small}
               />

@@ -1,25 +1,21 @@
+import { values } from '../common/values'
 import { ThreadComment } from '../types/comments'
 
 export const updateComments = (
   comments: ThreadComment[],
   id: string,
-  updateFn: (comment: ThreadComment) => ThreadComment
+  setUpdatedComment: (comment: ThreadComment) => ThreadComment
 ): ThreadComment[] => {
-  const updatedComments = comments.map((comment) => ({ ...comment }))
-  const stack: ThreadComment[] = [...updatedComments]
-
-  while (stack.length > 0) {
-    const current = stack.pop()!
-
-    if (current.id === id) {
-      Object.assign(current, updateFn(current))
+  return comments.map((comment) => {
+    if (comment.id === id) {
+      return setUpdatedComment(comment)
     }
 
-    current.replies = current.replies.map((reply) => ({ ...reply }))
-    stack.push(...current.replies)
-  }
-
-  return updatedComments
+    return {
+      ...comment,
+      replies: updateComments(comment.replies, id, setUpdatedComment),
+    }
+  })
 }
 
 export const sortComments = (comments: ThreadComment[]): ThreadComment[] => {
@@ -38,4 +34,47 @@ export const sortComments = (comments: ThreadComment[]): ThreadComment[] => {
   }
 
   return sortedComments
+}
+
+export const getDateTime = (milliseconds: number) => {
+  const now = new Date()
+  const postDate = new Date(milliseconds)
+
+  const formatTime = (date: Date): string => {
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    const ampm = hours >= 12 ? 'PM' : 'AM'
+    const formattedHours = hours % 12 || 12
+    const formattedMinutes = minutes.toString().padStart(2, '0')
+    return `${formattedHours}:${formattedMinutes} ${ampm}`
+  }
+
+  const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const postDateOnly = new Date(
+    postDate.getFullYear(),
+    postDate.getMonth(),
+    postDate.getDate()
+  )
+
+  const diffInDays = Math.floor(
+    (nowDate.getTime() - postDateOnly.getTime()) / (1000 * 60 * 60 * 24)
+  )
+
+  switch (true) {
+    case diffInDays === 0:
+      return formatTime(postDate)
+
+    case diffInDays === 1:
+      return `Yesterday at ${formatTime(postDate)}`
+
+    case diffInDays < 7:
+      return `${values.daysOfWeek[postDate.getDay()]} at ${formatTime(postDate)}`
+
+    default:
+      return postDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      })
+  }
 }

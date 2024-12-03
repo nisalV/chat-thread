@@ -29,7 +29,7 @@ export const ThreadProvider = ({ children }: CommentProviderProps) => {
       const newComment: ThreadComment = {
         id: uuidv4(),
         text,
-        author: 'Anonymous',
+        author: 'Nisal Perera',
         timestamp: Date.now(),
         upvotes: 0,
         downvotes: 0,
@@ -40,9 +40,9 @@ export const ThreadProvider = ({ children }: CommentProviderProps) => {
       const newComments = parentId
         ? updateComments(threadComments, parentId, (comment) => ({
             ...comment,
-            replies: [...comment.replies, newComment],
+            replies: [newComment, ...comment.replies],
           }))
-        : [...threadComments, newComment]
+        : [newComment, ...threadComments]
 
       saveThreadComments(newComments)
     },

@@ -4,6 +4,22 @@ import { ThreadComment } from '../../../types/comments'
 import './commentThread.css'
 import CommentInput from '../commentInput'
 import CommentOptions from './CommentOptions'
+import { imagePaths, sizes, spaces } from '../../../common/values'
+import Avatar from '../../core/image'
+import Text from '../../core/text'
+import { textStyles } from '../../../common/commonStyles'
+import { getDateTime } from '../../../utils/commentsUtils'
+
+const styles: Record<string, React.CSSProperties> = {
+  commentUserName: {
+    marginLeft: spaces.small,
+    ...textStyles.smallBold,
+  },
+  commentTime: {
+    marginLeft: spaces.small,
+    ...textStyles.extraSmall,
+  },
+}
 
 const CommentThread = () => {
   const { threadComments, voteComment, addComment, toggleCommentCollapse } =
@@ -42,18 +58,30 @@ const CommentThread = () => {
         <div
           key={comment.id}
           id={`comment-container`}
-          style={{ marginLeft: index * 20 }}
+          style={{ marginLeft: index * spaces.medium }}
         >
-          <div>
-            <p>{comment.text}</p>
-            <CommentOptions
-              isReplying={replyCommentId === comment.id}
-              comment={comment}
-              onReplyClick={() => onReplyClick(comment.id)}
-              voteComment={voteComment}
-              toggleCommentCollapse={toggleCommentCollapse}
-            />
+          <div id="comment">
+            <div id="comment-user">
+              <Avatar
+                src={imagePaths.avatar}
+                width={sizes.avatar.small}
+                height={sizes.avatar.small}
+              />
+              <Text style={styles.commentUserName} text={comment.author} />
+              <Text
+                style={styles.commentTime}
+                text={getDateTime(comment.timestamp)}
+              />
+            </div>
           </div>
+          <Text text={comment.text} />
+          <CommentOptions
+            isReplying={replyCommentId === comment.id}
+            comment={comment}
+            onReplyClick={() => onReplyClick(comment.id)}
+            voteComment={voteComment}
+            toggleCommentCollapse={toggleCommentCollapse}
+          />
 
           {replyCommentId === comment.id && (
             <CommentInput

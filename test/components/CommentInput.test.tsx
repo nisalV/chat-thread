@@ -1,8 +1,8 @@
 import React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import CommentInput from '../src/components/views/commentInput/index'
-import { ThreadProvider } from '../src/contexts/commentContext'
+import CommentInput from '../../src/components/views/commentInput/index'
+import { ThreadProvider } from '../../src/contexts/commentContext'
 
 describe('CommentInput Component', () => {
   it('clears text on submit for non-empty string', () => {

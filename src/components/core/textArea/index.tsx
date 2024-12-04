@@ -26,6 +26,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <textarea
+        id="comment-input"
         ref={forwardRef}
         required={isRequired}
         style={style}

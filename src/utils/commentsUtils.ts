@@ -1,5 +1,5 @@
 import { values } from '../common/values'
-import { ThreadComment } from '../types/comments'
+import { SortType, ThreadComment } from '../types/comments'
 
 export const updateComments = (
   comments: ThreadComment[],
@@ -16,24 +16,6 @@ export const updateComments = (
       replies: updateComments(comment.replies, id, setUpdatedComment),
     }
   })
-}
-
-export const sortComments = (comments: ThreadComment[]): ThreadComment[] => {
-  const sortedComments = comments.map((comment) => ({ ...comment }))
-  const stack: ThreadComment[] = [...sortedComments]
-
-  while (stack.length > 0) {
-    const current = stack.pop()!
-
-    current.replies.sort(
-      (a, b) => b.upvotes - b.downvotes - (a.upvotes - a.downvotes)
-    )
-
-    current.replies = current.replies.map((reply) => ({ ...reply }))
-    stack.push(...current.replies)
-  }
-
-  return sortedComments
 }
 
 export const getDateTime = (milliseconds: number) => {
@@ -77,4 +59,23 @@ export const getDateTime = (milliseconds: number) => {
         day: 'numeric',
       })
   }
+}
+
+export const sortCommentsFirstLayer = (
+  comments: ThreadComment[],
+  sortType: SortType
+): ThreadComment[] => {
+  const sortedComments = [...comments]
+
+  sortedComments.sort((a: ThreadComment, b: ThreadComment) => {
+    if (sortType === SortType.UPVOTES) {
+      return b.upvotes - a.upvotes
+    } else if (sortType === SortType.DOWNVOTES) {
+      return b.downvotes - a.downvotes
+    } else {
+      return b.timestamp - a.timestamp
+    }
+  })
+
+  return sortedComments
 }

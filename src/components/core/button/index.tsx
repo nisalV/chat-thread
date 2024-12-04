@@ -4,6 +4,7 @@ import './button.css'
 type ButtonProps = {
   label: string
   type?: 'submit' | 'reset' | 'button'
+  color?: string
   textColor?: string
   style?: React.CSSProperties
   onClick: () => void
@@ -12,6 +13,7 @@ type ButtonProps = {
 export const ButtonBase = ({
   label,
   type,
+  color = ' #ff5e00',
   textColor,
   style,
   onClick,
@@ -20,7 +22,11 @@ export const ButtonBase = ({
     <button
       id="button-base"
       type={type}
-      style={{ color: textColor || colors.white, ...style }}
+      style={{
+        color: textColor || colors.white,
+        backgroundColor: color,
+        ...style,
+      }}
       onClick={onClick}
     >
       {label}

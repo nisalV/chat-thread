@@ -1,4 +1,4 @@
-textarea {
+#comment-input {
   width: 100%;
   margin-right: 0;
   padding: 10px;
@@ -8,12 +8,13 @@ textarea {
   font-size: 14px;
   box-sizing: border-box;
   outline: none;
+  min-height: 100px;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-textarea:focus {
+#comment-input:focus {
   border-color: #ff5e00;
   box-shadow: 0 0 4px #b330009a;
 }

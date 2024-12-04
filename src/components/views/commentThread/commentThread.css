@@ -28,3 +28,20 @@
   position: absolute;
   margin-left: -36px;
 }
+
+#comment-user-name {
+  width: fit-content;
+}
+
+#comment-post-date {
+  width: fit-content;
+}
+
+@media (max-width: 500px) {
+  #comment-user-name {
+    width: 40%;
+  }
+  #comment-post-date {
+    width: 50%;
+  }
+}

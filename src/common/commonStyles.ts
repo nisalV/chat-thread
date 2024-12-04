@@ -6,4 +6,9 @@ export const textStyles = {
     fontSize: 14,
     fontWeight: 'bold',
   },
+  oneLineClip: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
 }

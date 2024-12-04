@@ -5,6 +5,12 @@ export enum VoteType {
   DOWNVOTE = 'downvote',
 }
 
+export enum SortType {
+  UPVOTES = 'upvotes',
+  DOWNVOTES = 'downvotes',
+  DEFAULT = 'default',
+}
+
 export type ThreadComment = {
   id: string
   text: string
@@ -18,12 +24,16 @@ export type ThreadComment = {
 
 export type CommentContextType = {
   threadComments: ThreadComment[]
+  sortBy: string
   addComment: (text: string, parentId?: string) => void
   voteComment: (
     id: string,
     voteType: VoteType.UPVOTE | VoteType.DOWNVOTE
   ) => void
   toggleCommentCollapse: (id: string, isCollapsed: boolean) => void
+  sortCommentsByUpvotes: () => void
+  sortCommentsByDownvotes: () => void
+  setSortToDefault: () => void
 }
 
 export type CommentProviderProps = {

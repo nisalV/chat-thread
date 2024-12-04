@@ -1,18 +1,19 @@
 #button-base {
-  background-color: #ff5e00;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  filter: brightness(1);
+  transition: filter 0.3s ease;
 }
 
 #button-base:hover {
-  background-color: #b33000;
+  filter: brightness(0.9);
 }
 
 #button-clear {
-  background-color: #ffff;
+  background-color: #ffffff;
   border: none;
   margin: 0;
   padding: 0;

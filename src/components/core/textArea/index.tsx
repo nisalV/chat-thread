@@ -6,12 +6,13 @@ type TextAreaProps = {
   placeholder: string
   isRequired?: boolean
   style?: React.CSSProperties
+  maxLength?: number
   onChange: (v: string) => void
   onSubmit?: () => void
 }
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
-    { value, placeholder, isRequired, style, onChange, onSubmit },
+    { value, placeholder, isRequired, style, maxLength, onChange, onSubmit },
     forwardRef
   ) => {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -29,6 +30,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         required={isRequired}
         style={style}
         value={value}
+        maxLength={maxLength}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}

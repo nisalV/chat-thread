@@ -1,9 +1,12 @@
 export const colors = {
   white: 'white',
+  lightPrimary: '#fc7544',
+  menuOptionSelect: '#c5c3c3',
 }
 
 export const storage = {
   comments: 'comments',
+  commentSortState: 'commentSortState',
 }
 
 export const sizes = {
@@ -13,6 +16,7 @@ export const sizes = {
 }
 
 export const spaces = {
+  extraSmall: 5,
   small: 10,
   medium: 20,
 }
@@ -27,4 +31,5 @@ export const values = {
     'Friday',
     'Saturday',
   ],
+  commentMAxLength: 800,
 }

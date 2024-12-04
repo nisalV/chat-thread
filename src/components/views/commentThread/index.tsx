@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { useThread } from '../../../hooks/commentHooks'
-import { ThreadComment } from '../../../types/comments'
+import { SortType, ThreadComment } from '../../../types/comments'
 import './commentThread.css'
 import CommentInput from '../commentInput'
 import CommentOptions from './CommentOptions'
@@ -10,6 +10,7 @@ import Text from '../../core/text'
 import { textStyles } from '../../../common/commonStyles'
 import { getDateTime } from '../../../utils/commentsUtils'
 import avatar from '../../../../src/assets/images/avatar.png'
+import DropdownMenu from '../../core/menuDrop'
 
 const styles: Record<string, React.CSSProperties> = {
   commentUserName: {
@@ -22,9 +23,19 @@ const styles: Record<string, React.CSSProperties> = {
   },
 }
 
+const sortByOptions = [SortType.UPVOTES, SortType.DOWNVOTES]
+
 const CommentThread = () => {
-  const { threadComments, voteComment, addComment, toggleCommentCollapse } =
-    useThread()
+  const {
+    threadComments,
+    sortBy,
+    voteComment,
+    addComment,
+    toggleCommentCollapse,
+    sortCommentsByUpvotes,
+    sortCommentsByDownvotes,
+    setSortToDefault,
+  } = useThread()
 
   const [replyCommentId, setReplyCommentId] = useState<string | null>(null)
 
@@ -53,8 +64,36 @@ const CommentThread = () => {
     return parseComments(threadComments)
   }, [threadComments])
 
+  const onSelectSortOption = (option: string) => {
+    if (sortBy === option) {
+      setSortToDefault()
+      return
+    }
+
+    switch (option) {
+      case SortType.UPVOTES: {
+        sortCommentsByUpvotes()
+        break
+      }
+      case SortType.DOWNVOTES: {
+        sortCommentsByDownvotes()
+        break
+      }
+      default: {
+        setSortToDefault()
+        return
+      }
+    }
+  }
+
   return (
     <div>
+      <DropdownMenu
+        label="Sort"
+        options={sortByOptions}
+        selectedOption={sortBy}
+        onSelect={onSelectSortOption}
+      />
       {parsedComments.map(({ comment, index }) => (
         <div
           key={comment.id}

@@ -3,6 +3,16 @@ import './commentInput.css'
 import { ButtonBase } from '../../core/button'
 import TextArea from '../../core/textArea'
 import { useThread } from '../../../hooks/commentHooks'
+import Text from '../../core/text'
+import { spaces, values } from '../../../common/values'
+import { textStyles } from '../../../common/commonStyles'
+
+const styles: Record<string, React.CSSProperties> = {
+  commentLength: {
+    marginLeft: spaces.small,
+    ...textStyles.extraSmall,
+  },
+}
 
 type CommentInputProps = {
   placeholder: string
@@ -42,16 +52,21 @@ const CommentInput = ({
   }
 
   return (
-    <form className="comment-input-container" onSubmit={handleFormSubmit}>
+    <form id="comment-input-container" onSubmit={handleFormSubmit}>
       <TextArea
         ref={textAreaRef}
         isRequired={true}
         value={commentText}
         placeholder={placeholder}
+        maxLength={values.commentMAxLength}
         onChange={setCommentText}
         onSubmit={onSubmit}
       />
-      <div className="submit-container">
+      <div id="submit-container">
+        <Text
+          text={`${commentText.length}/${values.commentMAxLength}`}
+          style={styles.commentLength}
+        />
         <ButtonBase
           label={buttonText || 'COMMENT'}
           type="submit"

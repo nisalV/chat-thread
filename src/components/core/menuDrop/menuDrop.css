@@ -1,0 +1,32 @@
+#menu-container {
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: right;
+}
+
+#list-container {
+  position: absolute;
+  top: 100%;
+  margin: 0;
+  padding: 2px 2px 0 2px;
+  list-style: none;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+#list-item {
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  border-radius: 2px;
+  background-color: #f0ececa8;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#list-item:hover {
+  background-color: #c5c3c3;
+}

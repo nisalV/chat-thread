@@ -5,8 +5,9 @@ import {
   CommentContextType,
   CommentProviderProps,
   VoteType,
+  SortType,
 } from '../types/comments'
-import { updateComments } from '../utils/commentsUtils'
+import { sortCommentsFirstLayer, updateComments } from '../utils/commentsUtils'
 import { storage } from '../common/values'
 
 export const ThreadContext = createContext<CommentContextType | undefined>(
@@ -18,10 +19,22 @@ export const ThreadProvider = ({ children }: CommentProviderProps) => {
     const savedComments = localStorage.getItem(storage.comments)
     return savedComments ? JSON.parse(savedComments) : []
   })
+  const [sortBy, setSortBy] = useState<string>(() => {
+    const savedState = localStorage.getItem(storage.commentSortState)
+    if (!savedState) {
+      localStorage.setItem(storage.commentSortState, SortType.DEFAULT)
+      return SortType.DEFAULT
+    }
+    return savedState
+  })
 
   const saveThreadComments = useCallback((newComments: ThreadComment[]) => {
     localStorage.setItem(storage.comments, JSON.stringify(newComments))
     setThreadComments(newComments)
+  }, [])
+
+  const saveSortBy = useCallback((option: SortType) => {
+    localStorage.setItem(storage.commentSortState, option)
   }, [])
 
   const addComment = useCallback(
@@ -78,13 +91,40 @@ export const ThreadProvider = ({ children }: CommentProviderProps) => {
     [threadComments, saveThreadComments]
   )
 
+  const sortCommentsByUpvotes = useCallback(() => {
+    const newComments = sortCommentsFirstLayer(threadComments, SortType.UPVOTES)
+    setSortBy(SortType.UPVOTES)
+    saveSortBy(SortType.UPVOTES)
+    saveThreadComments(newComments)
+  }, [threadComments, saveThreadComments, saveSortBy])
+
+  const sortCommentsByDownvotes = useCallback(() => {
+    const newComments = sortCommentsFirstLayer(
+      threadComments,
+      SortType.DOWNVOTES
+    )
+    setSortBy(SortType.DOWNVOTES)
+    saveSortBy(SortType.DOWNVOTES)
+    saveThreadComments(newComments)
+  }, [threadComments, saveThreadComments, saveSortBy])
+
+  const setSortToDefault = useCallback(() => {
+    const newComments = sortCommentsFirstLayer(threadComments, SortType.DEFAULT)
+    setSortBy(SortType.DEFAULT)
+    saveThreadComments(newComments)
+  }, [threadComments, saveThreadComments])
+
   return (
     <ThreadContext.Provider
       value={{
+        sortBy,
         threadComments,
         addComment,
         voteComment,
         toggleCommentCollapse,
+        sortCommentsByUpvotes,
+        sortCommentsByDownvotes,
+        setSortToDefault,
       }}
     >
       {children}

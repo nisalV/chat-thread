@@ -1,5 +1,6 @@
 export const colors = {
   white: 'white',
+  black: 'black',
   lightPrimary: '#fc7544',
   menuOptionSelect: '#c5c3c3',
 }

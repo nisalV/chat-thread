@@ -40,7 +40,7 @@ const CommentOptions = ({
         <>
           <Devider />
           <ButtonClear
-            label={`${comment.isCollapsed ? `↗️${isLargeScreen ? 'Expand' : ''}` : `↗️${isLargeScreen ? 'Collapse' : ''}`}`}
+            label={`${comment.isCollapsed ? `↗️${isLargeScreen ? 'Expand' : ''}` : `↙️${isLargeScreen ? 'Collapse' : ''}`}`}
             onClick={() =>
               toggleCommentCollapse(comment.id, !comment.isCollapsed)
             }

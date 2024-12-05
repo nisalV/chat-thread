@@ -1,4 +1,5 @@
 import React from 'react'
+import { colors } from '../../../common/values'
 
 interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   text: string
@@ -8,7 +9,7 @@ interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 const Text = ({ text, style, id, ...props }: TextProps) => {
   return (
-    <p style={style} id={id} {...props}>
+    <p style={{color: colors.black, ...style}} id={id} {...props}>
       {text}
     </p>
   )

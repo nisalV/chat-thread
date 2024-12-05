@@ -9,9 +9,17 @@
   box-sizing: border-box;
   outline: none;
   min-height: 100px;
+  background-color: #ffff;
+  color:#000 !important;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
+}
+  
+#comment-input::-moz-placeholder { 
+  color:#b5b5b5;
+  background-color:#ffff;  
+  opacity: 1;
 }
 
 #comment-input:focus {
